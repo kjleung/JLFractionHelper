@@ -14,4 +14,8 @@
 
 + (NSString*) multiply:(NSString*) fraction withFractionalMultiplier:(NSString*) multiplier;
 
++ (NSString*) add:(NSString*) fraction withWholeNumber:(NSString*) wholeNumber;
+
++ (NSString*) add:(NSString*) fraction withFractionalNumber:(NSString*) fractionalNumber;
+
 @end
