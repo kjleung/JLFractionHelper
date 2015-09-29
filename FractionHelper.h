@@ -10,12 +10,15 @@
 
 @interface FractionHelper : NSObject
 
-+ (NSString*) multiply:(NSString*) fraction withMultiplier:(NSString*) multiplier;
++ (NSString*) multiply:(NSString*) fraction withWholeMultiplier:(NSString*) multiplier;
 
 + (NSString*) multiply:(NSString*) fraction withFractionalMultiplier:(NSString*) multiplier;
 
 + (NSString*) add:(NSString*) fraction withWholeNumber:(NSString*) wholeNumber;
 
 + (NSString*) add:(NSString*) fraction withFractionalNumber:(NSString*) fractionalNumber;
+
++ (NSString*) reduce:(NSString*) fractionNumber;
+
 
 @end
