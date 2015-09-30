@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "JLFractionHelper"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Provide arithmetic functions on fractional numbers"
   s.description  = <<-DESC
                    Currently, only add and multiply are implemented. Subtract
@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.platform     = :ios, "5.0"
 
-  s.source       = { :git => "https://github.com/kjleung/JLFractionHelper.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/kjleung/JLFractionHelper.git", :tag => "0.0.2" }
   s.source_files  = "*.{h,m}"
 end
