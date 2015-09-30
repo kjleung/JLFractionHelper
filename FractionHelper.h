@@ -20,5 +20,12 @@
 
 + (NSString*) reduce:(NSString*) fractionNumber;
 
++ (NSString*) minus:(NSString*) fraction withWholeNumber:(NSString*) wholeNumber;
+
++ (NSString*) minus:(NSString*) fraction withFractionalNumber:(NSString*) fractionalNumber;
+
++ (NSString*) divid:(NSString*) fraction withWholeDivider:(NSString*) divider;
+
++ (NSString*) multiply:(NSString*) fraction withFractionalDivider:(NSString*) divider;
 
 @end

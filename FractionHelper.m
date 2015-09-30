@@ -108,7 +108,6 @@
 
 + (NSString*) add:(NSString*) fraction withWholeNumber:(NSString*) wholeNumber {
     
-    fraction = [FractionHelper reduce:fraction];
     NSArray* token;
     NSString* wholePortion;
     NSString* numeratorPortion;
@@ -206,8 +205,142 @@
     return [NSString stringWithFormat:@"%d/%d", m, n];
 }
 
++ (NSString*) minus:(NSString*) fraction withWholeNumber:(NSString*) wholeNumber{
+    NSArray* token;
+    NSString* wholePortion;
+    NSString* numeratorPortion;
+    NSString* denominatorPortion;
+    if ([fraction containsString:@" "]) {
+        token = [fraction componentsSeparatedByString:@" "];
+        wholePortion = token[0];
+        token = [token[1] componentsSeparatedByString:@"/"];
+    } else {
+        wholePortion = @"0";
+        token = [fraction componentsSeparatedByString:@"/"];
+    }
+    numeratorPortion = token[0];
+    denominatorPortion = token[1];
+    NSLog(@"%@ %@ %@", wholePortion, numeratorPortion, denominatorPortion);
+    
+    int iWholePortion = [wholePortion intValue];
+    int iNumeratorPortion = [numeratorPortion intValue];
+    int iDenominatorPortion = [denominatorPortion intValue];
+    
+    int iWholeNumber = [wholeNumber intValue];
+    
+    if (iWholePortion != 0) {
+        iNumeratorPortion += iWholePortion*iDenominatorPortion;
+    }
+    
+    iNumeratorPortion -= iWholeNumber*iDenominatorPortion;
+    
+    iWholePortion = floorf(iNumeratorPortion/iDenominatorPortion);
+    iNumeratorPortion = iNumeratorPortion % iDenominatorPortion;
+    
+    NSString* fractionalPortion = [FractionHelper reduce:[NSString stringWithFormat:@"%d/%d", abs(iNumeratorPortion), abs(iDenominatorPortion)]];
+    if (iWholePortion == 0) {
+        return fractionalPortion;
+    }
+    if (iNumeratorPortion == 0) {
+        return [NSString stringWithFormat:@"%d", iWholePortion];
+    }
+    return [NSString stringWithFormat:@"%d %@", iWholePortion, fractionalPortion];
+}
+
++ (NSString*) minus:(NSString*) fraction withFractionalNumber:(NSString*) fractionalNumber {
+    NSArray* token;
+    NSString* wholePortion1;
+    NSString* numeratorPortion1;
+    NSString* denominatorPortion1;
+    if ([fraction containsString:@" "]) {
+        token = [fraction componentsSeparatedByString:@" "];
+        wholePortion1 = token[0];
+        token = [token[1] componentsSeparatedByString:@"/"];
+    } else {
+        wholePortion1 = @"0";
+        token = [fraction componentsSeparatedByString:@"/"];
+    }
+    numeratorPortion1 = token[0];
+    denominatorPortion1 = token[1];
+    NSLog(@"%@ %@ %@", wholePortion1, numeratorPortion1, denominatorPortion1);
+    int iWholePortion1 = [wholePortion1 intValue];
+    int iNumeratorPortion1 = [numeratorPortion1 intValue];
+    int iDenominatorPortion1 = [denominatorPortion1 intValue];
+    
+    NSString* wholePortion2;
+    NSString* numeratorPortion2;
+    NSString* denominatorPortion2;
+    if ([fractionalNumber containsString:@" "]) {
+        token = [fractionalNumber componentsSeparatedByString:@" "];
+        wholePortion2 = token[0];
+        token = [token[1] componentsSeparatedByString:@"/"];
+    } else {
+        wholePortion2 = @"0";
+        token = [fractionalNumber componentsSeparatedByString:@"/"];
+    }
+    numeratorPortion2 = token[0];
+    denominatorPortion2 = token[1];
+    NSLog(@"%@ %@ %@", wholePortion2, numeratorPortion2, denominatorPortion2);
+    int iWholePortion2 = [wholePortion2 intValue];
+    int iNumeratorPortion2 = [numeratorPortion2 intValue];
+    int iDenominatorPortion2 = [denominatorPortion2 intValue];
+    
+    int iNewDenominator = iDenominatorPortion1 * iDenominatorPortion2;
+    int iNewNumerator = (iWholePortion1*iNewDenominator + iNumeratorPortion1*iDenominatorPortion2) - (iWholePortion2*iNewDenominator + iNumeratorPortion2*iDenominatorPortion1);
+    
+    
+    int iNewWhole = floorf(iNewNumerator/iNewDenominator);
+    iNewNumerator = iNewNumerator % iNewDenominator;
+    
+    
+    NSString* fractionalPortion = [FractionHelper reduce:[NSString stringWithFormat:@"%d/%d", abs(iNewNumerator), abs(iNewDenominator)]];
+
+    if (iNewWhole == 0) {
+        return fractionalPortion;
+    }
+    if (iNewNumerator == 0) {
+        return [NSString stringWithFormat:@"%d", iNewWhole];
+    }
+    return [NSString stringWithFormat:@"%d %@", iNewWhole, fractionalPortion];
+}
+
++ (NSString*) divid:(NSString*) fraction withWholeDivider:(NSString*) divider{
+    return nil;
+    
+}
+
++ (NSString*) multiply:(NSString*) fraction withFractionalDivider:(NSString*) divider{
+    return nil;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int gcd(int m, int n) {
     
+    if (n == 0 || m == 0) {
+        return 1;
+    }
     int t, r;
     
     if (m < n) {
