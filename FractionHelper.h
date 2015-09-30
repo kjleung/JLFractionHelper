@@ -24,8 +24,8 @@
 
 + (NSString*) minus:(NSString*) fraction withFractionalNumber:(NSString*) fractionalNumber;
 
-+ (NSString*) divid:(NSString*) fraction withWholeDivider:(NSString*) divider;
++ (NSString*) divide:(NSString*) fraction withWholeDivider:(NSString*) divider;
 
-+ (NSString*) multiply:(NSString*) fraction withFractionalDivider:(NSString*) divider;
++ (NSString*) divide:(NSString*) fraction withFractionalDivider:(NSString*) divider;
 
 @end
